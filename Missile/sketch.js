@@ -20,8 +20,8 @@ var shipX = 0;
 var shipY = 0;
 
 function preload() {
-  shippic = loadImage("js/IMAGES/ship.png");
-  missilepic = loadImage("js/IMAGES/missile.png");
+  shippic = loadImage("IMAGES/ship.png");
+  missilepic = loadImage("IMAGES/missile.png");
 }
 
 function setup(){
@@ -49,18 +49,18 @@ function draw() {
   }
   noStroke(255);
   fill(255);
-  textSize(20);
-  text("Score: " + score, width-width/3, height/20);
+  textSize(25);
+  text("Score: " + score, width*0.7, height/20);
   if (gameover == 1){
     stroke(255);
     strokeWeight(4);
     fill(0,255,0);
     textSize(50);
-    text("GAME OVER", 0, height / 2);
+    text("GAME OVER", 20, height / 2);
     noStroke(255);
     fill(255);
     textSize(50);
-    text("Score: " + score, 0, height / 2 + 60);
+    text("Score: " + score, 20, height / 2 + 60);
   }
   pop();
   ship.move();
@@ -171,7 +171,7 @@ function missilegen() {
   let y = random(0, width - d);
   let a = new missile(x, y, d);
   pop();
-  if(missiles.length < 7){
+  if(missiles.length < 10){
     missiles.push(a);
   }
   for(var i = 0; i < missiles.length; i++){
@@ -212,7 +212,7 @@ class missile {
       strokeWeight(3);
       point(pos.x, pos.y);
     }
-    if (this.history.length > 20){
+    if (this.history.length > 70){
       this.history.splice(0, 1);
     }
   }
@@ -277,7 +277,7 @@ function explode(position) {
 
 function drawbackground() {
   translate(-shipX + width / 2, -shipY + height / 2);
-  speed = 0.5;
+  speed = map(mouseX, 0, width, 0, 50)*0.2;
   background(0);
   push();
   translate(width / 2, height / 2);
@@ -287,70 +287,3 @@ function drawbackground() {
   }
   pop();
 }
-
-//Ads
-//initialize the goodies
-// function initAd(){
-//         if ( window.plugins && window.plugins.AdMob ) {
-//             var ad_units = {
-//                 ios : {
-//                     banner: 'ca-app-pub-xxxxxxxxxxx/xxxxxxxxxxx',		//PUT ADMOB ADCODE HERE
-//                     interstitial: 'ca-app-pub-xxxxxxxxxxx/xxxxxxxxxxx'	//PUT ADMOB ADCODE HERE
-//                 },
-//                 android : {
-//                     banner: 'ca-app-pub-3940256099942544/6300978111',		//PUT ADMOB ADCODE HERE
-//                     interstitial: 'ca-app-pub-3940256099942544/1033173712'	//PUT ADMOB ADCODE HERE
-//                 }
-//             };
-//             var admobid = ( /(android)/i.test(navigator.userAgent) ) ? ad_units.android : ad_units.ios;
-//
-//             window.plugins.AdMob.setOptions( {
-//                 publisherId: admobid.banner,
-//                 interstitialAdId: admobid.interstitial,
-//                 adSize: window.plugins.AdMob.AD_SIZE.SMART_BANNER,	//use SMART_BANNER, BANNER, LARGE_BANNER, IAB_MRECT, IAB_BANNER, IAB_LEADERBOARD
-//                 bannerAtTop: false, // set to true, to put banner at top
-//                 overlap: true, // banner will overlap webview
-//                 offsetTopBar: false, // set to true to avoid ios7 status bar overlap
-//                 isTesting: false, // receiving test ad
-//                 autoShow: false // auto show interstitial ad when loaded
-//             });
-//
-//             registerAdEvents();
-//             window.plugins.AdMob.createInterstitialView();	//get the interstitials ready to be shown
-//             window.plugins.AdMob.requestInterstitialAd();
-//
-//         } else {
-//             //alert( 'admob plugin not ready' );
-//         }
-// }
-// //functions to allow you to know when ads are shown, etc.
-// function registerAdEvents() {
-//         document.addEventListener('onReceiveAd', function(){});
-//         document.addEventListener('onFailedToReceiveAd', function(data){});
-//         document.addEventListener('onPresentAd', function(){});
-//         document.addEventListener('onDismissAd', function(){ });
-//         document.addEventListener('onLeaveToAd', function(){ });
-//         document.addEventListener('onReceiveInterstitialAd', function(){ });
-//         document.addEventListener('onPresentInterstitialAd', function(){ });
-//         document.addEventListener('onDismissInterstitialAd', function(){
-//         	window.plugins.AdMob.createInterstitialView();			//REMOVE THESE 2 LINES IF USING AUTOSHOW
-//             window.plugins.AdMob.requestInterstitialAd();			//get the next one ready only after the current one is closed
-//         });
-//     }
-//
-//     //display the banner
-// function showBannerFunc(){
-//     window.plugins.AdMob.createBannerView();
-// }
-// //display the interstitial
-// function showInterstitialFunc(){
-//     window.plugins.AdMob.showInterstitialAd();
-// }
-//
-// function onLoad(){
-//   document.addEventListener("deviceready", onDeviceReady, false);
-// }
-//
-// function onDeviceReady(){
-//   initAd();
-// }
