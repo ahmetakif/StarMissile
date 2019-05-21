@@ -91,7 +91,7 @@ function startgame() {
   gameover = 0;
   exploded = 0;
   expcircleD = 0;
-  createCanvas(windowWidth*0.95, windowHeight*0.98);
+  createCanvas(windowWidth*0.95, windowHeight*0.97);
   var x = width / 2;
   var y = height - 150;
   var d = 70;
