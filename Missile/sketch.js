@@ -50,7 +50,7 @@ function draw() {
   noStroke(255);
   fill(255);
   textSize(25);
-  text("Score: " + score, width*0.7, height/20);
+  text("Score: " + score, width*0.5, height/20);
   if (gameover == 1){
     stroke(255);
     strokeWeight(4);
